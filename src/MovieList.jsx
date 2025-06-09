@@ -6,7 +6,7 @@ import { parseMovieList } from "./utils/utils";
 const MovieList = () => {
     let [movieData, setMovieData] = useState([]);
 
-    const apiKey = import.meta.env.VITE_APP_API_KEY;
+    const apiKey = import.meta.env.VITE_API_KEY;
     const url = `https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}`;
     const options = {
         method: "GET",
@@ -26,8 +26,8 @@ const MovieList = () => {
 
     return (
         <main className="movie-list-container">
-            {movieData.map(movie => {
-                return (<MovieCard title={movie.title} image={movie.image} average={movie.average}/>)
+            {movieData && movieData.map((movie,index) => {
+                return (<MovieCard key={index} title={movie.title} image={movie.image} average={movie.average}/>)
             })}
         </main>
     )
