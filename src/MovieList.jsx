@@ -6,12 +6,12 @@ import { parseMovieList } from "./utils/utils";
 const MovieList = () => {
     let [movieData, setMovieData] = useState([]);
 
-    const url = 'https://api.themoviedb.org/3/movie/now_playing';
+    const apiKey = import.meta.env.VITE_APP_API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}`;
     const options = {
         method: "GET",
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2EwZTJmZTU0MjY4ZWFiNzg0MDFhNWExYjViNjRlNCIsIm5iZiI6MTc0OTQ4Nzc0MS43MjQsInN1YiI6IjY4NDcxMDdkZjA0YWFhZmI3ODNmY2I3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BXe1UTRF5PF8ozI4QcxyMiA0UD9xZHl96EmIarPmdE0'
         }
     };
 
