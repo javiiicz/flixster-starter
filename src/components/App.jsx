@@ -45,7 +45,7 @@ const App = () => {
             }
             const data = await response.json();
             setSearchData(parseMovieList(data));
-            setCurrentPageNP((prev) => prev + 1);
+            setCurrentPageSearch((prev) => prev + 1);
         } catch (e) {
             console.error(e);
         }
