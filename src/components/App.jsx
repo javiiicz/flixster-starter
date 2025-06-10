@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import '../styles/App.css'
 import MovieList from './MovieList'
 import Header from './Header'
 import Footer from './Footer'

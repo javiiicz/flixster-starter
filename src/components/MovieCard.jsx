@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./MovieCard.css"
+import "../styles/MovieCard.css"
 
 const MovieCard = ({title, image, average}) => {
     return (
