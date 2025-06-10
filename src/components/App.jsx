@@ -13,7 +13,8 @@ const App = () => {
     const [textField, setTextField] = useState("");
     const [searchData, setSearchData] = useState([]);
     const [showSearch, setShowSearch] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(true);
+    const [movie, setMovie] = useState(null);
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -79,7 +80,7 @@ const App = () => {
                 <MovieList loadMore={() => {fetchNowPlaying(currentPageNP)}} movieData={movieData} />
             )}
 
-            {showModal && <MovieModal/>}
+            {showModal && <MovieModal setShowModal={setShowModal} movie={movie}/>}
             
 
             <Footer />
