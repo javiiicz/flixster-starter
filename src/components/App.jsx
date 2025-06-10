@@ -6,10 +6,10 @@ import Footer from "./Footer";
 import { parseMovieList } from "../utils/utils";
 
 const App = () => {
-    let [movieData, setMovieData] = useState([]);
-    let [currentPage, setCurrentPage] = useState(1);
-    let [textField, setTextField] = useState("");
-    let [searchData, setSearchData] = useState([]);
+    const [movieData, setMovieData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [textField, setTextField] = useState("");
+    const [searchData, setSearchData] = useState([]);
 
     useEffect(() => {
         fetchData();
