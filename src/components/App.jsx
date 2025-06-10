@@ -7,26 +7,28 @@ import { parseMovieList } from "../utils/utils";
 
 const App = () => {
     const [movieData, setMovieData] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPageNP, setCurrentPageNP] = useState(1);
+    const [currentPageSearch, setCurrentPageSearch] = useState(1);
     const [textField, setTextField] = useState("");
     const [searchData, setSearchData] = useState([]);
+    const [showSearch, setShowSearch] = useState(false);
 
     useEffect(() => {
-        fetchData();
+        fetchNowPlaying(1);
     }, []);
 
     const apiKey = import.meta.env.VITE_API_KEY;
 
-    const fetchData = async () => {
+    const fetchNowPlaying = async (page) => {
         try {
-            const url = `https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}&page=${currentPage}`;
+            const url = `https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}&page=${page}`;
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error("Failed to fetch movie data");
             }
             const data = await response.json();
             setMovieData((prev) => prev.concat(parseMovieList(data)));
-            setCurrentPage((prev) => prev + 1);
+            setCurrentPageNP((prev) => prev + 1);
         } catch (e) {
             console.error(e);
         }
@@ -34,20 +36,20 @@ const App = () => {
         // error handling
     };
 
-    const searchMovies = async () => {
+    const fetchSearch = async (page) => {
         try {
-            const url = `https://api.themoviedb.org/3/search/movie?query=${textField}&api_key=${apiKey}`
+            const url = `https://api.themoviedb.org/3/search/movie?query=${textField}&api_key=${apiKey}&page=${page}`;
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error("Failed to fetch movie data");
             }
             const data = await response.json();
-            setSearchData((prev) => prev.concat(parseMovieList(data)));
-            setCurrentPage((prev) => prev + 1);
+            setSearchData(parseMovieList(data));
+            setCurrentPageNP((prev) => prev + 1);
         } catch (e) {
             console.error(e);
         }
-    }
+    };
 
     const handleTextChange = (e) => {
         setTextField(e.target.value);
@@ -55,7 +57,8 @@ const App = () => {
 
     const submitSearch = (e) => {
         e.preventDefault();
-        searchMovies()
+        fetchSearch(1);
+        setShowSearch(true);
     };
 
     return (
@@ -64,7 +67,13 @@ const App = () => {
                 handleTextChange={handleTextChange}
                 submitSearch={submitSearch}
             />
-            <MovieList loadMore={fetchData} movieData={movieData} />
+
+            {showSearch ? (
+                <MovieList loadMore={() => {fetchSearch(currentPageSearch)}} movieData={searchData} />
+            ) : (
+                <MovieList loadMore={() => {fetchNowPlaying(currentPageNP)}} movieData={movieData} />
+            )}
+
             <Footer />
         </div>
     );
