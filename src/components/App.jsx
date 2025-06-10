@@ -17,11 +17,18 @@ const App = () => {
     const apiKey = import.meta.env.VITE_API_KEY;
 
     const fetchData = async () => {
-        const url = `https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}&page=${currentPage}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        setMovieData((prev) => prev.concat(parseMovieList(data)));
-        setCurrentPage((prev) => prev + 1);
+        try {
+            const url = `https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}&page=${currentPage}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error("Failed to fetch movie data");
+            }
+            const data = await response.json();
+            setMovieData((prev) => prev.concat(parseMovieList(data)));
+            setCurrentPage((prev) => prev + 1);
+        } catch (e) {
+            console.error(e);
+        }
 
         // error handling
     };
@@ -31,13 +38,16 @@ const App = () => {
     };
 
     const submitSearch = (e) => {
-        e.preventDefault()
-        console.log(textField)
-    }
+        e.preventDefault();
+        console.log(textField);
+    };
 
     return (
         <div className="App">
-            <Header handleTextChange={handleTextChange} submitSearch={submitSearch}/>
+            <Header
+                handleTextChange={handleTextChange}
+                submitSearch={submitSearch}
+            />
             <MovieList loadMore={fetchData} movieData={movieData} />
             <Footer />
         </div>
