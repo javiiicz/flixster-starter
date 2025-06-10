@@ -67,6 +67,8 @@ const App = () => {
             <Header
                 handleTextChange={handleTextChange}
                 submitSearch={submitSearch}
+                showSearch={showSearch}
+                setShowSearch={setShowSearch}
             />
 
             {showSearch ? (

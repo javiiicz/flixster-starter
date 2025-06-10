@@ -1,13 +1,21 @@
 import "../styles/Header.css"
 import NavTools from "./NavTools";
 
-const Header = ({handleTextChange, submitSearch}) => {
+const Header = ({handleTextChange, submitSearch, showSearch, setShowSearch}) => {
+    const nowTabClass = showSearch ? "tab" : "tab active"
+    const searchTabClass = showSearch ? "tab active" : "tab"
+
     return (
         <header>
-            <h1>🍿 Flixster 🍿</h1>
+            <div className="header-container">
+                <h1>🍿 Flixster 🍿</h1>
+                <NavTools handleTextChange={handleTextChange} submitSearch={submitSearch}/>
+            </div>
 
-            
-            <NavTools handleTextChange={handleTextChange} submitSearch={submitSearch}/>
+            <div className="view-tabs">
+                <button className={nowTabClass} onClick={() => {setShowSearch(false)}}>Now Playing</button>
+                <button className={searchTabClass} onClick={submitSearch}>Search</button>
+            </div>
         </header>
     )
 }

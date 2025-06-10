@@ -1,7 +1,5 @@
 header {
-    background-color: #3B413C;
-    box-shadow: 0 0 5px rgb(0,0,0,0.8);
-    padding: 20px;
+    
     position: sticky;
     top: 0;
     z-index: 1;
@@ -14,3 +12,40 @@ h1 {
     font-size: 40px;
 }
 
+.header-container {
+    background-color: #3B413C;
+    box-shadow: 0 0 5px rgb(0,0,0,0.8);
+    padding: 20px;
+}
+
+.view-tabs {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    overflow: hidden;
+    border-radius: 0 0 10px 10px;
+    margin-left: 10%;
+    box-shadow: 0 0 5px rgb(0,0,0,0.8);
+}
+
+.tab {
+    border: none;
+    background-color: #0D3B66;
+    padding: 5px 10px;
+    color: white;
+    transition: all 0.3s;
+}
+
+.tab:hover {
+    background-color: #539987;
+    font-weight: 900;
+}
+
+.tab:active {
+    background-color: #0A2A49;
+}
+
+.active {
+    background-color: #0A2A49;
+    font-weight: 900;
+}
