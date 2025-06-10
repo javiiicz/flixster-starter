@@ -1,9 +1,21 @@
 header {
     background-color: #3B413C;
     box-shadow: 0 0 5px rgb(0,0,0,0.8);
+    padding: 20px;
 }
 
 h1 {
     color: #FFFFFF;
 }
 
+.tools {
+    margin: 0 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.search-form {
+    display: flex;
+    gap: 5px;
+}
