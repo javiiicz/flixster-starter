@@ -4,6 +4,7 @@ import MovieList from "./MovieList";
 import Header from "./Header";
 import Footer from "./Footer";
 import { parseMovieList } from "../utils/utils";
+import MovieModal from "./MovieModal";
 
 const App = () => {
     const [movieData, setMovieData] = useState([]);
@@ -12,6 +13,7 @@ const App = () => {
     const [textField, setTextField] = useState("");
     const [searchData, setSearchData] = useState([]);
     const [showSearch, setShowSearch] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -76,6 +78,9 @@ const App = () => {
             ) : (
                 <MovieList loadMore={() => {fetchNowPlaying(currentPageNP)}} movieData={movieData} />
             )}
+
+            {showModal && <MovieModal/>}
+            
 
             <Footer />
         </div>
