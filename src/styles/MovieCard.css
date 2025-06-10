@@ -27,3 +27,9 @@
     font-size: 14px;
     color: #444;
 }
+
+@media (max-width: 800px) {
+    .movie-card {
+        width: 150px;
+    }
+}

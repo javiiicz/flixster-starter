@@ -22,7 +22,7 @@ const MovieList = ({ movieData, loadMore }) => {
                     <button onClick={loadMore}>Load More</button>
                 </>
             ) : (
-                <div>
+                <div className="nothing">
                     <h2>Nothing to show...</h2>
                 </div>
             )}
