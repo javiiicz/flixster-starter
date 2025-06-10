@@ -1,19 +1,33 @@
 import MovieCard from "./MovieCard";
-import "../styles/MovieList.css"
+import "../styles/MovieList.css";
+import { useEffect } from "react";
 
-const MovieList = ({movieData, loadMore}) => {
-    
-
+const MovieList = ({ movieData, loadMore }) => {
     return (
         <main>
-            <div className="movie-list-container">
-                {movieData && movieData.map((movie,index) => {
-                    return (<MovieCard key={index} title={movie.title} image={movie.image} average={movie.average}/>)
-                })}
-            </div>
-            <button onClick={loadMore}>Load More</button>
+            {!(movieData.length === 0) ? (
+                <>
+                    <div className="movie-list-container">
+                        {movieData.map((movie, index) => {
+                            return (
+                                <MovieCard
+                                    key={index}
+                                    title={movie.title}
+                                    image={movie.image}
+                                    average={movie.average}
+                                />
+                            );
+                        })}
+                    </div>
+                    <button onClick={loadMore}>Load More</button>
+                </>
+            ) : (
+                <div>
+                    <h2>Nothing to show...</h2>
+                </div>
+            )}
         </main>
-    )
-}
+    );
+};
 
 export default MovieList;
