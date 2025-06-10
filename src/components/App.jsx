@@ -44,7 +44,7 @@ const App = () => {
                 throw new Error("Failed to fetch movie data");
             }
             const data = await response.json();
-            setSearchData(parseMovieList(data));
+            setSearchData((prev) => prev.concat(parseMovieList(data)));
             setCurrentPageSearch((prev) => prev + 1);
         } catch (e) {
             console.error(e);
@@ -57,6 +57,7 @@ const App = () => {
 
     const submitSearch = (e) => {
         e.preventDefault();
+        setSearchData([])
         fetchSearch(1);
         setShowSearch(true);
     };
