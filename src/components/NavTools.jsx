@@ -11,7 +11,7 @@ const NavTools = ({handleTextChange, handleSearchSubmit, clearSearch, setSortOpt
             <select name="sort-options" defaultValue="" onChange={(e) => {
                 setSortOption(e.target.value)
             }}>
-                <option value="" disabled hidden>
+                <option value="">
                     Sort By
                 </option>
                 <option value="title">Title (alphabetic, A-Z)</option>

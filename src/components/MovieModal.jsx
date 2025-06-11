@@ -17,45 +17,40 @@ const MovieModal = ({ setShowModal, movie }) => {
                 <div className="poster-container">
                     <div className="backdrop-image">
                         <img
-                        src={
-                            movie.image
-                                ? `http://image.tmdb.org/t/p/w780/${movie.image}`
-                                : "../../public/placeholder_img.svg"
-                        }
-                        alt={movie.title}
-                        
-                    ></img>
+                            src={
+                                movie.image
+                                    ? `http://image.tmdb.org/t/p/w780/${movie.image}`
+                                    : "../../public/placeholder_img.svg"
+                            }
+                            alt={movie.title}
+                        ></img>
                     </div>
                     <div className="details-container">
                         <p>
-                            <span>Runtime:</span>{" "}
-                            {movie ? movie.runtime : "runtime"} minutes
+                            <span>Runtime: </span>
+                            {movie.runtime} minutes
                         </p>
                         <p>
-                            <span>Release Date:</span>{" "}
-                            {movie ? movie.date : "date"}
+                            <span>Release Date: </span>
+                            {movie.date}
                         </p>
                         <p>
-                            <span>Overview:</span>{" "}
-                            {movie ? movie.description : "desc"}
+                            <span>Overview: </span>
+                            {movie.description}
                         </p>
                         <div>
                             <p>
-                                <span>Genres:</span>
+                                <span>Genres: </span>
                             </p>
-                            {movie ? (
-                                <div className="genre-container">
-                                    {movie.genres.map((genre) => {
-                                        return (
-                                            <div className="genre-card">
-                                                <p>{genre}</p>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            ) : (
-                                "genres"
-                            )}
+                            <div className="genre-container">
+                                {movie.genres.map((genre, index) => {
+                                    return (
+                                        <div key={index} className="genre-card">
+                                            <p>{genre}</p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>
