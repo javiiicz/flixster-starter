@@ -23,7 +23,7 @@ const MovieModal = ({ setShowModal, movie, videoLink }) => {
                 setShowModal(false);
             }}
         >
-            <div className="modal-content" onClick={handleClickInside}>
+            <aside className="modal-content" onClick={handleClickInside}>
                 <h2>{movie ? movie.title : "Movie Title"}</h2>
                 <div className="movie-container">
                     <div className="media-container">
@@ -96,7 +96,7 @@ const MovieModal = ({ setShowModal, movie, videoLink }) => {
                 >
                     Close
                 </button>
-            </div>
+            </aside>
         </div>
     );
 };

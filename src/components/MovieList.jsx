@@ -6,9 +6,9 @@ const MovieList = ({ movieData, loadMore, handleMovieClick }) => {
     if (movieData.length === 0) {
         return (
             <main>
-                <div className="nothing">
+                <section className="nothing">
                     <h2>Nothing to show...</h2>
-                </div>
+                </section>
             </main>
         );
     }
@@ -17,7 +17,7 @@ const MovieList = ({ movieData, loadMore, handleMovieClick }) => {
 
     return (
         <main>
-            <div className="movie-list-container">
+            <section className="movie-list-container">
                 {movieData.map((movie, index) => {
                     return (
                         <MovieCard
@@ -30,7 +30,7 @@ const MovieList = ({ movieData, loadMore, handleMovieClick }) => {
                         />
                     );
                 })}
-            </div>
+            </section>
             <button onClick={loadMore}>Load More</button>
         </main>
     );

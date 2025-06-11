@@ -12,10 +12,10 @@ const Header = ({handleTextChange, handleSearchSubmit, showSearch, setShowSearch
                 <NavTools handleTextChange={handleTextChange} handleSearchSubmit={handleSearchSubmit} clearSearch={clearSearch} setSortOption={setSortOption}/>
             </div>
 
-            <div className="view-tabs">
+            <nav className="view-tabs">
                 <button className={nowTabClass} onClick={() => {setShowSearch(false)}}>Now Playing</button>
                 <button className={searchTabClass} onClick={handleSearchSubmit}>Search</button>
-            </div>
+            </nav>
         </header>
     )
 }
