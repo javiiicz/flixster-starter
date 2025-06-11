@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/MovieModal.css";
 
-const MovieModal = ({ setShowModal, movie }) => {
-    const [showTrailer, setShowTrailer] = useState(false)
+const MovieModal = ({ setShowModal, movie, videoLink }) => {
+    const [showTrailer, setShowTrailer] = useState(false);
 
     const handleClickInside = (e) => {
         e.stopPropagation();
@@ -10,11 +10,11 @@ const MovieModal = ({ setShowModal, movie }) => {
 
     const toggleTrailer = () => {
         if (showTrailer) {
-            setShowTrailer(false)
+            setShowTrailer(false);
         } else {
-            setShowTrailer(true)
+            setShowTrailer(true);
         }
-    }
+    };
 
     return (
         <div
@@ -28,7 +28,11 @@ const MovieModal = ({ setShowModal, movie }) => {
                 <div className="movie-container">
                     <div className="media-container">
                         <div className="slider-frame">
-                            <div className={showTrailer ? "slider slide2" : "slider"}>
+                            <div
+                                className={
+                                    showTrailer ? "slider slide2" : "slider"
+                                }
+                            >
                                 <img
                                     src={
                                         movie.image
@@ -37,16 +41,22 @@ const MovieModal = ({ setShowModal, movie }) => {
                                     }
                                     alt={movie.title}
                                 ></img>
-                                <iframe
-                                    className="video-player"
-                                    src="https://www.youtube.com/embed/lJIrF4YjHfQ?si=BBzq24PhefFbBPLB"
-                                    title="YouTube video player"
-                                    frameborder="0"
-                                    allowfullscreen
-                                ></iframe>
+                                {videoLink && (
+                                    <iframe
+                                        className="video-player"
+                                        src={`https://www.youtube.com/embed/${videoLink}`}
+                                        allow="autoplay"
+                                        frameBorder={0}
+                                        allowFullScreen
+                                    ></iframe>
+                                )}
                             </div>
                         </div>
-                        <button onClick={toggleTrailer}>Toggle Backdrop / Trailer</button>
+                        {videoLink && (
+                            <button onClick={toggleTrailer}>
+                                Toggle Backdrop / Trailer
+                            </button>
+                        )}
                     </div>
                     <div className="details-container">
                         <p>

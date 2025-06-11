@@ -3,7 +3,11 @@ import "../styles/App.css";
 import MovieList from "./MovieList";
 import Header from "./Header";
 import Footer from "./Footer";
-import { parseMovieList, parseMovieData } from "../utils/utils";
+import {
+    parseMovieList,
+    parseMovieData,
+    parseMovieVideos,
+} from "../utils/utils";
 import MovieModal from "./MovieModal";
 
 const App = () => {
@@ -15,9 +19,10 @@ const App = () => {
     const [showSearch, setShowSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [movie, setMovie] = useState(null);
-    const [searchSubmitted, setSearchSubmitted] = useState(false)
-    const [sortOption, setSortOption] = useState(null)
+    const [searchSubmitted, setSearchSubmitted] = useState(false);
+    const [sortOption, setSortOption] = useState(null);
     const [needsSorting, setNeedsSorting] = useState(false);
+    const [videoLink, setVideoLink] = useState(null);
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -35,7 +40,7 @@ const App = () => {
             const data = await response.json();
             setMovieData((prev) => prev.concat(parseMovieList(data)));
             setCurrentPageNP((prev) => prev + 1);
-            setNeedsSorting(true)
+            setNeedsSorting(true);
         } catch (e) {
             console.error(e);
         }
@@ -51,7 +56,7 @@ const App = () => {
             const data = await response.json();
             setSearchData((prev) => prev.concat(parseMovieList(data)));
             setCurrentPageSearch((prev) => prev + 1);
-            setNeedsSorting(true)
+            setNeedsSorting(true);
         } catch (e) {
             console.error(e);
         }
@@ -63,31 +68,32 @@ const App = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        setSearchSubmitted(true)
+        setSearchSubmitted(true);
     };
 
     const submitSearch = () => {
         setSearchData([]);
         fetchSearch(1);
         setShowSearch(true);
-    }
+    };
 
     const clearSearch = (e) => {
         e.preventDefault();
-        setTextField('');
-        e.target.form.reset()
-        setSearchSubmitted(true)
-    }
+        setTextField("");
+        e.target.form.reset();
+        setSearchSubmitted(true);
+    };
 
     useEffect(() => {
         if (searchSubmitted) {
-            submitSearch()
-            setSearchSubmitted(false)
+            submitSearch();
+            setSearchSubmitted(false);
         }
-    }, [searchSubmitted])
+    }, [searchSubmitted]);
 
     const handleMovieClick = (id) => {
-        fetchMovieDetails(id)
+        fetchMovieDetails(id);
+        fetchMovieVideo(id)
     };
 
     const fetchMovieDetails = async (movieID) => {
@@ -98,9 +104,24 @@ const App = () => {
                 throw new Error("Failed to fetch movie details");
             }
             const data = await response.json();
-            let parsed = parseMovieData(data)
-            setMovie(parsed)
-            setShowModal(true)
+            let parsed = parseMovieData(data);
+            setMovie(parsed);
+            setShowModal(true);
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const fetchMovieVideo = async (movieID) => {
+        try {
+            const url = `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${apiKey}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error("Failed to fetch movie video");
+            }
+            const data = await response.json();
+            let parsed = parseMovieVideos(data);
+            setVideoLink(parsed);
         } catch (e) {
             console.error(e);
         }
@@ -108,45 +129,45 @@ const App = () => {
 
     const sortMoviesByName = () => {
         let newMovieData = movieData.toSorted((a, b) => {
-                return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
-            });
-        return newMovieData
-    }
+            return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+        });
+        return newMovieData;
+    };
 
     const sortMoviesByDate = () => {
         let newMovieData = movieData.toSorted((a, b) => {
-                if (a.release_date < b.release_date) {
-                    return 1
-                } else if (a.release_date > b.release_date) {
-                    return -1
-                } else {
-                    return 0
-                }
-            });
-        return newMovieData
-    }
+            if (a.release_date < b.release_date) {
+                return 1;
+            } else if (a.release_date > b.release_date) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        return newMovieData;
+    };
 
     const sortMoviesByRating = () => {
         let newMovieData = movieData.toSorted((a, b) => {
-                return  - a.average + b.average;
-            });
-        return newMovieData
-    }
+            return -a.average + b.average;
+        });
+        return newMovieData;
+    };
 
     const applySort = () => {
         if (sortOption === "title") {
-            setMovieData(sortMoviesByName())
+            setMovieData(sortMoviesByName());
         } else if (sortOption === "date") {
-            setMovieData(sortMoviesByDate())
-        } else if (sortOption === 'average') {
-            setMovieData(sortMoviesByRating())
+            setMovieData(sortMoviesByDate());
+        } else if (sortOption === "average") {
+            setMovieData(sortMoviesByRating());
         }
-    }
+    };
 
     useEffect(() => {
-        applySort()
+        applySort();
         if (needsSorting) {
-            setNeedsSorting(false)
+            setNeedsSorting(false);
         }
     }, [sortOption, needsSorting]);
 
@@ -180,7 +201,11 @@ const App = () => {
             )}
 
             {showModal && (
-                <MovieModal setShowModal={setShowModal} movie={movie} />
+                <MovieModal
+                    setShowModal={setShowModal}
+                    movie={movie}
+                    videoLink={videoLink}
+                />
             )}
 
             <Footer />
