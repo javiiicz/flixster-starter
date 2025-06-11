@@ -1,5 +1,3 @@
-import { func } from "prop-types";
-
 // parses the result when fetching movies from TMDb
 function parseMovieList(movieListObject) {
     let movies = [];
@@ -40,7 +38,7 @@ function parseMovieVideos(videosObj) {
     if (videos.length === 0) {
         return null;
     }
-    
+
     return videos[0].key
 }
 
