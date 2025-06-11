@@ -2,6 +2,10 @@ import { useState } from "react";
 import "../styles/MovieModal.css";
 
 const MovieModal = ({ showModal, setShowModal, movie, videoLink }) => {
+    if (!movie) {
+        return 
+    }
+
     const [showTrailer, setShowTrailer] = useState(false);
 
     const handleClickInside = (e) => {
