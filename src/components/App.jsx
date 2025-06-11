@@ -16,6 +16,7 @@ const App = () => {
     const [showModal, setShowModal] = useState(false);
     const [movie, setMovie] = useState(null);
     const [searchSubmitted, setSearchSubmitted] = useState(false)
+    const [sortOption, setSortOption] = useState(null)
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -104,6 +105,15 @@ const App = () => {
         }
     };
 
+    useEffect(() => {
+        if (sortOption == "title") {
+            let newMovieData = movieData.toSorted((a, b) => {
+                return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+            });
+            setMovieData(newMovieData)
+        }
+    }, [sortOption]);
+
     return (
         <div className="App">
             <Header
@@ -112,6 +122,7 @@ const App = () => {
                 showSearch={showSearch}
                 setShowSearch={setShowSearch}
                 clearSearch={clearSearch}
+                setSortOption={setSortOption}
             />
 
             {showSearch ? (

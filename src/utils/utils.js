@@ -7,7 +7,8 @@ function parseMovieList(movieListObject) {
             id: movie.id,
             title: movie.original_title,
             image: movie.poster_path,
-            average: movie.vote_average
+            average: movie.vote_average,
+            release_date: (new Date(movie.release_date))
         }
 
         movies.push(movieObj);
