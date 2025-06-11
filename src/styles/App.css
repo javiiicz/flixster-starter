@@ -2,7 +2,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    height: max(100vh, max-content);
+    min-height: 100vh
 }
 
 .App-header {
