@@ -105,12 +105,40 @@ const App = () => {
         }
     };
 
-    useEffect(() => {
-        if (sortOption == "title") {
-            let newMovieData = movieData.toSorted((a, b) => {
+    const sortMoviesByName = () => {
+        let newMovieData = movieData.toSorted((a, b) => {
                 return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
             });
-            setMovieData(newMovieData)
+        return newMovieData
+    }
+
+    const sortMoviesByDate = () => {
+        let newMovieData = movieData.toSorted((a, b) => {
+                if (a.release_date < b.release_date) {
+                    return 1
+                } else if (a.release_date > b.release_date) {
+                    return -1
+                } else {
+                    return 0
+                }
+            });
+        return newMovieData
+    }
+
+    const sortMoviesByRating = () => {
+        let newMovieData = movieData.toSorted((a, b) => {
+                return  - a.average + b.average;
+            });
+        return newMovieData
+    }
+
+    useEffect(() => {
+        if (sortOption === "title") {
+            setMovieData(sortMoviesByName())
+        } else if (sortOption === "date") {
+            setMovieData(sortMoviesByDate())
+        } else if (sortOption === 'average') {
+            setMovieData(sortMoviesByRating())
         }
     }, [sortOption]);
 
