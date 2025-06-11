@@ -65,6 +65,10 @@ const App = () => {
         setShowSearch(true);
     };
 
+    const handleMovieClick = (id) => {
+        console.log(id)
+    }
+
     return (
         <div className="App">
             <Header
@@ -75,9 +79,9 @@ const App = () => {
             />
 
             {showSearch ? (
-                <MovieList loadMore={() => {fetchSearch(currentPageSearch)}} movieData={searchData} />
+                <MovieList loadMore={() => {fetchSearch(currentPageSearch)}} movieData={searchData} handleMovieClick={handleMovieClick}/>
             ) : (
-                <MovieList loadMore={() => {fetchNowPlaying(currentPageNP)}} movieData={movieData} />
+                <MovieList loadMore={() => {fetchNowPlaying(currentPageNP)}} movieData={movieData} handleMovieClick={handleMovieClick}/>
             )}
 
             {showModal && <MovieModal setShowModal={setShowModal} movie={movie}/>}

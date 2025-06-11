@@ -4,6 +4,7 @@ function parseMovieList(movieListObject) {
 
     movieListObject.results.forEach(movie => {
         let movieObj = {
+            id: movie.id,
             title: movie.original_title,
             image: movie.poster_path,
             average: movie.vote_average
