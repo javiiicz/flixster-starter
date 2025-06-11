@@ -38,7 +38,7 @@ const MovieModal = ({ showModal, setShowModal, movie, videoLink }) => {
                                     src={
                                         movie.image
                                             ? `http://image.tmdb.org/t/p/w780/${movie.image}`
-                                            : "../../public/placeholder_img.svg"
+                                            : "/placeholder_backdrop.svg"
                                     }
                                     alt={`${movie.title} Backdrop`}
                                 ></img>
