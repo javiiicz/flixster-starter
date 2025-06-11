@@ -17,6 +17,7 @@ const App = () => {
     const [movie, setMovie] = useState(null);
     const [searchSubmitted, setSearchSubmitted] = useState(false)
     const [sortOption, setSortOption] = useState(null)
+    const [needsSorting, setNeedsSorting] = useState(false);
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -34,11 +35,10 @@ const App = () => {
             const data = await response.json();
             setMovieData((prev) => prev.concat(parseMovieList(data)));
             setCurrentPageNP((prev) => prev + 1);
+            setNeedsSorting(true)
         } catch (e) {
             console.error(e);
         }
-
-        // error handling
     };
 
     const fetchSearch = async (page) => {
@@ -51,6 +51,7 @@ const App = () => {
             const data = await response.json();
             setSearchData((prev) => prev.concat(parseMovieList(data)));
             setCurrentPageSearch((prev) => prev + 1);
+            setNeedsSorting(true)
         } catch (e) {
             console.error(e);
         }
@@ -132,7 +133,7 @@ const App = () => {
         return newMovieData
     }
 
-    useEffect(() => {
+    const applySort = () => {
         if (sortOption === "title") {
             setMovieData(sortMoviesByName())
         } else if (sortOption === "date") {
@@ -140,7 +141,14 @@ const App = () => {
         } else if (sortOption === 'average') {
             setMovieData(sortMoviesByRating())
         }
-    }, [sortOption]);
+    }
+
+    useEffect(() => {
+        applySort()
+        if (needsSorting) {
+            setNeedsSorting(false)
+        }
+    }, [sortOption, needsSorting]);
 
     return (
         <div className="App">
