@@ -48,6 +48,10 @@ h1 {
     font-weight: 900;
 }
 
+nav button {
+    border-radius: 0;
+}
+
 @media (max-width: 800px) {
     h1 {
         font-size: 30px;

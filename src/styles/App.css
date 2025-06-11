@@ -14,3 +14,20 @@
     color: white;
     padding: 20px;
 }
+
+button {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(82, 121, 111, 0.4);
+    border-radius: 5px;
+    background-color: white;
+}
+
+button:hover {
+    background-color: #CAD2C5;
+}
+
+button:active {
+    background-color: #52796F;
+    color: white;
+}
