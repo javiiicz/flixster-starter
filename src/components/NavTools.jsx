@@ -1,11 +1,12 @@
 import "../styles/NavTools.css";
 
-const NavTools = ({handleTextChange, submitSearch}) => {
+const NavTools = ({handleTextChange, handleSearchSubmit, clearSearch}) => {
     return (
         <div className="tools">
-            <form className="search-form" onSubmit={submitSearch}>
+            <form className="search-form" onSubmit={handleSearchSubmit} id='search-form'>
                 <input type="text" onChange={handleTextChange}></input>
                 <button type="submit">Search</button>
+                <button onClick={clearSearch}>Clear</button>
             </form>
             <select name="sort-options" defaultValue="">
                 <option value="" disabled hidden>

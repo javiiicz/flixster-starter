@@ -15,6 +15,7 @@ const App = () => {
     const [showSearch, setShowSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [movie, setMovie] = useState(null);
+    const [searchSubmitted, setSearchSubmitted] = useState(false)
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -58,12 +59,30 @@ const App = () => {
         setTextField(e.target.value);
     };
 
-    const submitSearch = (e) => {
+    const handleSearchSubmit = (e) => {
         e.preventDefault();
+        setSearchSubmitted(true)
+    };
+
+    const submitSearch = () => {
         setSearchData([]);
         fetchSearch(1);
         setShowSearch(true);
-    };
+    }
+
+    const clearSearch = (e) => {
+        e.preventDefault();
+        setTextField('');
+        e.target.form.reset()
+        setSearchSubmitted(true)
+    }
+
+    useEffect(() => {
+        if (searchSubmitted) {
+            submitSearch()
+            setSearchSubmitted(false)
+        }
+    }, [searchSubmitted])
 
     const handleMovieClick = (id) => {
         fetchMovieDetails(id)
@@ -89,9 +108,10 @@ const App = () => {
         <div className="App">
             <Header
                 handleTextChange={handleTextChange}
-                submitSearch={submitSearch}
+                handleSearchSubmit={handleSearchSubmit}
                 showSearch={showSearch}
                 setShowSearch={setShowSearch}
+                clearSearch={clearSearch}
             />
 
             {showSearch ? (
