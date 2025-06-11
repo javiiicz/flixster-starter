@@ -15,14 +15,17 @@ const MovieModal = ({ setShowModal, movie }) => {
             <div className="modal-content" onClick={handleClickInside}>
                 <h2>{movie ? movie.title : "Movie Title"}</h2>
                 <div className="poster-container">
-                    <img
+                    <div className="backdrop-image">
+                        <img
                         src={
                             movie.image
-                                ? `http://image.tmdb.org/t/p/w500/${movie.image}`
+                                ? `http://image.tmdb.org/t/p/w780/${movie.image}`
                                 : "../../public/placeholder_img.svg"
                         }
                         alt={movie.title}
+                        
                     ></img>
+                    </div>
                     <div className="details-container">
                         <p>
                             <span>Runtime:</span>{" "}

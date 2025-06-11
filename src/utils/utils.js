@@ -20,7 +20,7 @@ function parseMovieData(movieObj) {
 
     let details = {
         title: movieObj.title,
-        image: movieObj.poster_path,
+        image: movieObj.backdrop_path,
         runtime: movieObj.runtime,
         date: movieObj.release_date,
         description: movieObj.overview,
