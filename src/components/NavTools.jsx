@@ -5,8 +5,10 @@ const NavTools = ({handleTextChange, handleSearchSubmit, clearSearch, setSortOpt
         <div className="tools">
             <form className="search-form" onSubmit={handleSearchSubmit} id='search-form'>
                 <input type="text" onChange={handleTextChange}></input>
-                <button type="submit">Search</button>
-                <button onClick={clearSearch}>Clear</button>
+                <div className="buttons">
+                    <button type="submit">Search</button>
+                    <button onClick={clearSearch}>Clear</button>
+                </div>
             </form>
             <select name="sort-options" defaultValue="" onChange={(e) => {
                 setSortOption(e.target.value)
@@ -14,9 +16,9 @@ const NavTools = ({handleTextChange, handleSearchSubmit, clearSearch, setSortOpt
                 <option value="">
                     Sort By
                 </option>
-                <option value="title">Title (alphabetic, A-Z)</option>
-                <option value="date">Release date (chronologically, most recent to oldest)</option>
-                <option value="average">Vote average (descending, highest to lowest)</option>
+                <option value="title">Title</option>
+                <option value="date">Release date</option>
+                <option value="average">Vote average</option>
             </select>
         </div>
     );
