@@ -39,7 +39,7 @@ const MovieModal = ({ setShowModal, movie, videoLink }) => {
                                             ? `http://image.tmdb.org/t/p/w780/${movie.image}`
                                             : "../../public/placeholder_img.svg"
                                     }
-                                    alt={movie.title}
+                                    alt={`${movie.title} Backdrop`}
                                 ></img>
                                 {videoLink && (
                                     <iframe
@@ -48,6 +48,7 @@ const MovieModal = ({ setShowModal, movie, videoLink }) => {
                                         allow="autoplay"
                                         frameBorder={0}
                                         allowFullScreen
+                                        alt={`${movie.title} Trailer`}
                                     ></iframe>
                                 )}
                             </div>

@@ -6,7 +6,7 @@ const MovieCard = ({movie_id, title, image, average, handleMovieClick}) => {
 
     return (
         <div className="movie-card" onClick={() => {handleMovieClick(movie_id)}}>
-            <img src={image_src} alt={title} className="movie-image"></img>
+            <img src={image_src} alt={`${title} Movie Poster`} className="movie-image"></img>
             <h3 className="movie-title">{title}</h3>
             <p className="movie-rating">Rating: {average}</p>
         </div>
