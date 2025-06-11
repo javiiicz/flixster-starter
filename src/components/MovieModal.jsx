@@ -14,26 +14,48 @@ const MovieModal = ({ setShowModal, movie }) => {
         >
             <div className="modal-content" onClick={handleClickInside}>
                 <h2>{movie ? movie.title : "Movie Title"}</h2>
-                <img
-                    src={
-                        movie
-                            ? `http://image.tmdb.org/t/p/w500/${movie.image}`
-                            : "Movie Image"
-                    }
-                    alt={movie.title}
-                ></img>
-                <p>
-                    <span>Runtime:</span> {movie ? movie.runtime : "runtime"} minutes
-                </p>
-                <p>
-                    <span>Release Date:</span> {movie ? movie.date : "date"}
-                </p>
-                <p>
-                    <span>Overview:</span> {movie ? movie.description : "desc"}
-                </p>
-                <p>
-                    <span>Genres:</span> {movie ? movie.genres : "genres"}
-                </p>
+                <div className="poster-container">
+                    <img
+                        src={
+                            movie.image
+                                ? `http://image.tmdb.org/t/p/w500/${movie.image}`
+                                : "../../public/placeholder_img.svg"
+                        }
+                        alt={movie.title}
+                    ></img>
+                    <div className="details-container">
+                        <p>
+                            <span>Runtime:</span>{" "}
+                            {movie ? movie.runtime : "runtime"} minutes
+                        </p>
+                        <p>
+                            <span>Release Date:</span>{" "}
+                            {movie ? movie.date : "date"}
+                        </p>
+                        <p>
+                            <span>Overview:</span>{" "}
+                            {movie ? movie.description : "desc"}
+                        </p>
+                        <div>
+                            <p>
+                                <span>Genres:</span>
+                            </p>
+                            {movie ? (
+                                <div className="genre-container">
+                                    {movie.genres.map((genre) => {
+                                        return (
+                                            <div className="genre-card">
+                                                <p>{genre}</p>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                "genres"
+                            )}
+                        </div>
+                    </div>
+                </div>
 
                 <button
                     onClick={() => {
