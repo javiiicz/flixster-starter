@@ -21,6 +21,7 @@ const MovieModal = ({ showModal, setShowModal, movie, videoLink }) => {
             className={showModal ? "modal-overlay visible" : "modal-overlay"}
             onClick={() => {
                 setShowModal(false);
+                setShowTrailer(false);
             }}
         >
             <aside className={showModal ? "modal-content visible" : "modal-content"} onClick={handleClickInside}>
