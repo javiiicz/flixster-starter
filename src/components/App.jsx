@@ -200,13 +200,13 @@ const App = () => {
                 />
             )}
 
-            {showModal && (
-                <MovieModal
+            <MovieModal
+                    showModal={showModal}
                     setShowModal={setShowModal}
                     movie={movie}
                     videoLink={videoLink}
                 />
-            )}
+            
 
             <Footer />
         </div>

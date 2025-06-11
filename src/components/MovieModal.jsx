@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/MovieModal.css";
 
-const MovieModal = ({ setShowModal, movie, videoLink }) => {
+const MovieModal = ({ showModal, setShowModal, movie, videoLink }) => {
     const [showTrailer, setShowTrailer] = useState(false);
 
     const handleClickInside = (e) => {
@@ -18,12 +18,12 @@ const MovieModal = ({ setShowModal, movie, videoLink }) => {
 
     return (
         <div
-            className="modal-overlay"
+            className={showModal ? "modal-overlay visible" : "modal-overlay"}
             onClick={() => {
                 setShowModal(false);
             }}
         >
-            <aside className="modal-content" onClick={handleClickInside}>
+            <aside className={showModal ? "modal-content visible" : "modal-content"} onClick={handleClickInside}>
                 <h2>{movie ? movie.title : "Movie Title"}</h2>
                 <div className="movie-container">
                     <div className="media-container">
