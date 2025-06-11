@@ -3,7 +3,7 @@ import "../styles/App.css";
 import MovieList from "./MovieList";
 import Header from "./Header";
 import Footer from "./Footer";
-import { parseMovieList } from "../utils/utils";
+import { parseMovieList, parseMovieData } from "../utils/utils";
 import MovieModal from "./MovieModal";
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
     const [textField, setTextField] = useState("");
     const [searchData, setSearchData] = useState([]);
     const [showSearch, setShowSearch] = useState(false);
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
@@ -60,14 +60,30 @@ const App = () => {
 
     const submitSearch = (e) => {
         e.preventDefault();
-        setSearchData([])
+        setSearchData([]);
         fetchSearch(1);
         setShowSearch(true);
     };
 
     const handleMovieClick = (id) => {
-        console.log(id)
-    }
+        fetchMovieDetails(id)
+    };
+
+    const fetchMovieDetails = async (movieID) => {
+        try {
+            const url = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error("Failed to fetch movie details");
+            }
+            const data = await response.json();
+            let parsed = parseMovieData(data)
+            setMovie(parsed)
+            setShowModal(true)
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
     return (
         <div className="App">
@@ -79,13 +95,26 @@ const App = () => {
             />
 
             {showSearch ? (
-                <MovieList loadMore={() => {fetchSearch(currentPageSearch)}} movieData={searchData} handleMovieClick={handleMovieClick}/>
+                <MovieList
+                    loadMore={() => {
+                        fetchSearch(currentPageSearch);
+                    }}
+                    movieData={searchData}
+                    handleMovieClick={handleMovieClick}
+                />
             ) : (
-                <MovieList loadMore={() => {fetchNowPlaying(currentPageNP)}} movieData={movieData} handleMovieClick={handleMovieClick}/>
+                <MovieList
+                    loadMore={() => {
+                        fetchNowPlaying(currentPageNP);
+                    }}
+                    movieData={movieData}
+                    handleMovieClick={handleMovieClick}
+                />
             )}
 
-            {showModal && <MovieModal setShowModal={setShowModal} movie={movie}/>}
-            
+            {showModal && (
+                <MovieModal setShowModal={setShowModal} movie={movie} />
+            )}
 
             <Footer />
         </div>

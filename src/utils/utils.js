@@ -16,4 +16,18 @@ function parseMovieList(movieListObject) {
     return movies;
 }
 
-export {parseMovieList};
+function parseMovieData(movieObj) {
+
+    let details = {
+        title: movieObj.title,
+        image: movieObj.poster_path,
+        runtime: movieObj.runtime,
+        date: movieObj.release_date,
+        description: movieObj.overview,
+        genres: movieObj.genres.map(x => x.name)
+    }
+
+    return details
+}
+
+export {parseMovieList, parseMovieData};
