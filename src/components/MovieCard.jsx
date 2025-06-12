@@ -2,7 +2,14 @@ import PropTypes from "prop-types";
 import "../styles/MovieCard.css";
 import { useEffect, useState } from "react";
 
-const MovieCard = ({ movie, handleMovieClick, handleMovieLike, handleMovieWatch, likedMovies, watchedMovies }) => {
+const MovieCard = ({
+    movie,
+    handleMovieClick,
+    handleMovieLike,
+    handleMovieWatch,
+    likedMovies,
+    watchedMovies,
+}) => {
     const [isLiked, setIsLiked] = useState(false);
     const [isWatched, setIsWatched] = useState(false);
 
@@ -19,21 +26,23 @@ const MovieCard = ({ movie, handleMovieClick, handleMovieLike, handleMovieWatch,
         setIsWatched(!isWatched);
     };
 
-    if (likedMovies.includes(movie) && !isLiked) {
-        setIsLiked(true)
-    }
-
-    if (watchedMovies.includes(movie) && !isWatched) {
-        setIsWatched(true)
-    }
+    useEffect(() => {
+        handleMovieLike(movie, isLiked);
+    }, [isLiked]);
 
     useEffect(() => {
-        handleMovieLike(movie, isLiked)
-    }, [isLiked])
+        handleMovieWatch(movie, isLiked);
+    }, [isWatched]);
 
     useEffect(() => {
-        handleMovieWatch(movie, isLiked)
-    }, [isWatched])
+        if (likedMovies.includes(movie) && !isLiked) {
+            setIsLiked(true);
+        }
+
+        if (watchedMovies.includes(movie) && !isWatched) {
+            setIsWatched(true);
+        }
+    }, []);
 
     return (
         <article
@@ -51,7 +60,9 @@ const MovieCard = ({ movie, handleMovieClick, handleMovieLike, handleMovieWatch,
                 <div className="icon-container" onClick={togglLike}>
                     <img
                         src="./heart.svg"
-                        className={isLiked ? `icon heart iactive` : `icon heart`}
+                        className={
+                            isLiked ? `icon heart iactive` : `icon heart`
+                        }
                         alt="Add to Liked"
                     ></img>
                 </div>
