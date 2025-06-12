@@ -12,6 +12,7 @@
     transition: opacity 0.2s;
     opacity: 0;
     pointer-events: none;
+    backdrop-filter: blur(2px)
 }
 
 .modal-content {
