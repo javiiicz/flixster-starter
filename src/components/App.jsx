@@ -220,34 +220,33 @@ const App = () => {
                 setOpenSidebar={setOpenSidebar}
             />
 
-            <main>
-            {showSearch ? (
-                <MovieList
-                    loadMore={() => {
-                        fetchSearch(currentPageSearch);
-                    }}
-                    movieData={searchData}
-                    handleMovieClick={handleMovieClick}
-                    handleMovieLike={handleMovieLike}
-                    handleMovieWatch={handleMovieWatch}
-                    likedMovies={likedMovies}
-                    watchedMovies={watchedMovies}
-                />
-            ) : (
-                <MovieList
-                    loadMore={() => {
-                        fetchNowPlaying(currentPageNP);
-                    }}
-                    movieData={movieData}
-                    handleMovieClick={handleMovieClick}
-                    handleMovieLike={handleMovieLike}
-                    handleMovieWatch={handleMovieWatch}
-                    likedMovies={likedMovies}
-                    watchedMovies={watchedMovies}
-                />
-            )}
-
-            <Sidebar/>
+            <main className={openSidebar ? "main-open-sidebar" : ""}>
+                {openSidebar && <Sidebar />}
+                {showSearch ? (
+                    <MovieList
+                        loadMore={() => {
+                            fetchSearch(currentPageSearch);
+                        }}
+                        movieData={searchData}
+                        handleMovieClick={handleMovieClick}
+                        handleMovieLike={handleMovieLike}
+                        handleMovieWatch={handleMovieWatch}
+                        likedMovies={likedMovies}
+                        watchedMovies={watchedMovies}
+                    />
+                ) : (
+                    <MovieList
+                        loadMore={() => {
+                            fetchNowPlaying(currentPageNP);
+                        }}
+                        movieData={movieData}
+                        handleMovieClick={handleMovieClick}
+                        handleMovieLike={handleMovieLike}
+                        handleMovieWatch={handleMovieWatch}
+                        likedMovies={likedMovies}
+                        watchedMovies={watchedMovies}
+                    />
+                )}
             </main>
 
             <MovieModal
@@ -258,8 +257,6 @@ const App = () => {
                 showTrailer={showTrailer}
                 setShowTrailer={setShowTrailer}
             />
-
-            
 
             <Footer />
         </div>

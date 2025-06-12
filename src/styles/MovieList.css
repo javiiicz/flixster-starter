@@ -8,6 +8,15 @@
     justify-content: center;
 }
 
+.movie-content {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: scroll;
+    max-height: calc(100vh - 255px);
+}
 
 @media (max-width: 800px) {
     .movie-list-container {

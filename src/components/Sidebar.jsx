@@ -1,8 +1,14 @@
+import "../styles/Sidebar.css"
+
 const Sidebar = () => {
     return (
-        <div className="sidebar-overlay">
-            <div className="sidebar-content"></div>
-        </div>
+            <div className="sidebar-content">
+                <ul>
+                    <li>Home</li>
+                    <li>Liked</li>
+                    <li>Watched</li>
+                </ul>
+            </div>
     )
 }
 

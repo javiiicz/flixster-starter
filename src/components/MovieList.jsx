@@ -22,7 +22,7 @@ const MovieList = ({
     }
 
     return (
-        <>
+        <div className="movie-content">
             <section className="movie-list-container">
                 {movieData.map((movie, index) => {
                     return (
@@ -39,7 +39,7 @@ const MovieList = ({
                 })}
             </section>
             <button onClick={loadMore}>Load More</button>
-        </>
+        </div>
     );
 };
 
