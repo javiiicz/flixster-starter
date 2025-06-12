@@ -242,11 +242,31 @@ const App = () => {
         }
 
         if (route === 'liked') {
-            return (<></>)
+            return (
+                <MovieList
+                        loadMore={null}
+                        movieData={likedMovies}
+                        handleMovieClick={handleMovieClick}
+                        handleMovieLike={handleMovieLike}
+                        handleMovieWatch={handleMovieWatch}
+                        likedMovies={likedMovies}
+                        watchedMovies={watchedMovies}
+                    />
+            )
         }
 
         if (route === watched) {
-            return (<></>)
+            return (
+                <MovieList
+                        loadMore={null}
+                        movieData={watchedMovies}
+                        handleMovieClick={handleMovieClick}
+                        handleMovieLike={handleMovieLike}
+                        handleMovieWatch={handleMovieWatch}
+                        likedMovies={likedMovies}
+                        watchedMovies={watchedMovies}
+                    />
+            )
         }
     }
 

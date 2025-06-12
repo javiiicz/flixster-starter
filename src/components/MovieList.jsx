@@ -38,7 +38,9 @@ const MovieList = ({
                     );
                 })}
             </section>
-            <button onClick={loadMore}>Load More</button>
+            {loadMore && (
+                <button onClick={loadMore}>Load More</button>
+            )}
         </div>
     );
 };
