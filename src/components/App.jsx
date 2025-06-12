@@ -4,6 +4,7 @@ import MovieList from "./MovieList";
 import Header from "./Header";
 import Footer from "./Footer";
 import {
+    parseMovie,
     parseMovieList,
     parseMovieData,
     parseMovieVideos,
@@ -23,6 +24,8 @@ const App = () => {
     const [sortOption, setSortOption] = useState(null);
     const [needsSorting, setNeedsSorting] = useState(false);
     const [videoLink, setVideoLink] = useState(null);
+    const [likedMovies, setLikedMovies] = useState([]);
+    const [watchedMovies, setWatchedMovies] = useState([]);
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -93,7 +96,7 @@ const App = () => {
 
     const handleMovieClick = (id) => {
         fetchMovieDetails(id);
-        fetchMovieVideo(id)
+        fetchMovieVideo(id);
     };
 
     const fetchMovieDetails = async (movieID) => {
@@ -164,12 +167,40 @@ const App = () => {
         }
     };
 
+    const handleMovieLike = (movie, adding) => {
+        if (adding) {
+            setLikedMovies([...likedMovies, movie]);
+        } else {
+            if (likedMovies.length === 0) {
+                return;
+            }
+            const newList = likedMovies.filter((x) => x !== movie);
+            setLikedMovies(newList);
+        }
+    };
+
+    const handleMovieWatch = (movie, adding) => {
+        if (adding) {
+            setWatchedMovies([...watchedMovies, movie]);
+        } else {
+            if (watchedMovies.length === 0) {
+                return;
+            }
+            const newList = watchedMovies.filter((x) => x !== movie);
+            setWatchedMovies(newList);
+        }
+    };
+
     useEffect(() => {
         applySort();
         if (needsSorting) {
             setNeedsSorting(false);
         }
     }, [sortOption, needsSorting]);
+
+    useEffect(() => {
+        console.log(likedMovies)
+    }, [likedMovies])
 
     return (
         <div className="App">
@@ -189,6 +220,8 @@ const App = () => {
                     }}
                     movieData={searchData}
                     handleMovieClick={handleMovieClick}
+                    handleMovieLike={handleMovieLike}
+                    handleMovieWatch={handleMovieWatch}
                 />
             ) : (
                 <MovieList
@@ -197,16 +230,17 @@ const App = () => {
                     }}
                     movieData={movieData}
                     handleMovieClick={handleMovieClick}
+                    handleMovieLike={handleMovieLike}
+                    handleMovieWatch={handleMovieWatch}
                 />
             )}
 
             <MovieModal
-                    showModal={showModal}
-                    setShowModal={setShowModal}
-                    movie={movie}
-                    videoLink={videoLink}
-                />
-            
+                showModal={showModal}
+                setShowModal={setShowModal}
+                movie={movie}
+                videoLink={videoLink}
+            />
 
             <Footer />
         </div>

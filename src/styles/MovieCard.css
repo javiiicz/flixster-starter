@@ -55,7 +55,8 @@
     height: 100%;
 }
 
-.heart, .eye {
+.heart,
+.eye {
     transition: transform 0.3s, filter 0.2s;
 }
 
@@ -68,9 +69,23 @@
 }
 
 .heart:hover {
-    filter: invert(82%) sepia(42%) saturate(6406%) hue-rotate(1deg) brightness(104%) contrast(102%) drop-shadow(0px 0px 10px rgba(255, 165, 0, 1));
+    filter: invert(82%) sepia(42%) saturate(6406%) hue-rotate(1deg)
+        brightness(104%) contrast(102%)
+        drop-shadow(0px 0px 10px rgba(255, 165, 0, 1));
 }
 
 .eye:hover {
-    filter: invert(12%) sepia(97%) saturate(4511%) hue-rotate(357deg) brightness(115%) contrast(122%) drop-shadow(0px 0px 10px rgba(255, 0, 0, 1));
+    filter: invert(12%) sepia(97%) saturate(4511%) hue-rotate(357deg)
+        brightness(115%) contrast(122%)
+        drop-shadow(0px 0px 10px rgba(255, 0, 0, 1));
+}
+
+.eye.iactive {
+    filter: invert(12%) sepia(97%) saturate(4511%) hue-rotate(357deg)
+        brightness(115%) contrast(122%);
+}
+
+.heart.iactive {
+    filter: invert(82%) sepia(42%) saturate(6406%) hue-rotate(1deg)
+        brightness(104%) contrast(102%);
 }

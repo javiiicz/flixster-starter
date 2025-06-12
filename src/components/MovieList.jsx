@@ -2,7 +2,7 @@ import MovieCard from "./MovieCard";
 import "../styles/MovieList.css";
 import { useEffect } from "react";
 
-const MovieList = ({ movieData, loadMore, handleMovieClick }) => {
+const MovieList = ({ movieData, loadMore, handleMovieClick, handleMovieLike, handleMovieWatch }) => {
     if (movieData.length === 0) {
         return (
             <main>
@@ -22,11 +22,10 @@ const MovieList = ({ movieData, loadMore, handleMovieClick }) => {
                     return (
                         <MovieCard
                             key={index}
-                            movie_id={movie.id}
-                            title={movie.title}
-                            image={movie.image}
-                            average={movie.average}
+                            movie={movie}
                             handleMovieClick={handleMovieClick}
+                            handleMovieLike={handleMovieLike}
+                            handleMovieWatch={handleMovieWatch}
                         />
                     );
                 })}

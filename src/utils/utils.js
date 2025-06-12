@@ -3,18 +3,23 @@ function parseMovieList(movieListObject) {
     let movies = [];
 
     movieListObject.results.forEach((movie) => {
-        let movieObj = {
+        let movieObj = parseMovie(movie)
+        movies.push(movieObj);
+    });
+
+    return movies;
+}
+
+function parseMovie(movie) {
+    let movieObj = {
             id: movie.id,
             title: movie.original_title,
             image: movie.poster_path,
             average: movie.vote_average,
             release_date: new Date(movie.release_date),
         };
-
-        movies.push(movieObj);
-    });
-
-    return movies;
+    
+        return movieObj
 }
 
 function parseMovieData(movieObj) {
@@ -42,4 +47,4 @@ function parseMovieVideos(videosObj) {
     return videos[0].key
 }
 
-export { parseMovieList, parseMovieData, parseMovieVideos };
+export { parseMovie, parseMovieList, parseMovieData, parseMovieVideos };
