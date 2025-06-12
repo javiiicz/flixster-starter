@@ -4,15 +4,19 @@ import NavTools from "./NavTools";
 const Header = ({
     handleTextChange,
     handleSearchSubmit,
-    showSearch,
-    setShowSearch,
+    route,
+    setRoute,
     clearSearch,
     setSortOption,
     openSidebar,
     setOpenSidebar,
 }) => {
+    const showSearch = route === "search";
+
     const nowTabClass = showSearch ? "tab" : "tab active";
     const searchTabClass = showSearch ? "tab active" : "tab";
+
+    const showTabs = route === "search" || route === "nowPlaying";
 
     return (
         <header>
@@ -28,19 +32,24 @@ const Header = ({
                 />
             </div>
 
-            <nav className="view-tabs">
-                <button
-                    className={nowTabClass}
-                    onClick={() => {
-                        setShowSearch(false);
-                    }}
-                >
-                    Now Playing
-                </button>
-                <button className={searchTabClass} onClick={handleSearchSubmit}>
-                    Search
-                </button>
-            </nav>
+            {showTabs && (
+                <nav className="view-tabs">
+                    <button
+                        className={nowTabClass}
+                        onClick={() => {
+                            setRoute("nowPlaying");
+                        }}
+                    >
+                        Now Playing
+                    </button>
+                    <button
+                        className={searchTabClass}
+                        onClick={handleSearchSubmit}
+                    >
+                        Search
+                    </button>
+                </nav>
+            )}
         </header>
     );
 };

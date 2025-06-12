@@ -29,6 +29,7 @@ const App = () => {
     const [watchedMovies, setWatchedMovies] = useState([]);
     const [openSidebar, setOpenSidebar] = useState(false);
     const [showTrailer, setShowTrailer] = useState(false);
+    const [route, setRoute] = useState('nowPlaying')
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -80,7 +81,7 @@ const App = () => {
     const submitSearch = () => {
         setSearchData([]);
         fetchSearch(1);
-        setShowSearch(true);
+        setRoute('search')
     };
 
     const clearSearch = (e) => {
@@ -207,35 +208,10 @@ const App = () => {
         }
     }, [sortOption, needsSorting]);
 
-    return (
-        <div className="App">
-            <Header
-                handleTextChange={handleTextChange}
-                handleSearchSubmit={handleSearchSubmit}
-                showSearch={showSearch}
-                setShowSearch={setShowSearch}
-                clearSearch={clearSearch}
-                setSortOption={setSortOption}
-                openSidebar={openSidebar}
-                setOpenSidebar={setOpenSidebar}
-            />
-
-            <main className={openSidebar ? "main-open-sidebar" : ""}>
-                {openSidebar && <Sidebar />}
-                {showSearch ? (
-                    <MovieList
-                        loadMore={() => {
-                            fetchSearch(currentPageSearch);
-                        }}
-                        movieData={searchData}
-                        handleMovieClick={handleMovieClick}
-                        handleMovieLike={handleMovieLike}
-                        handleMovieWatch={handleMovieWatch}
-                        likedMovies={likedMovies}
-                        watchedMovies={watchedMovies}
-                    />
-                ) : (
-                    <MovieList
+    const returnList = (route) => {
+        if (route === "nowPlaying") {
+            return (
+                <MovieList
                         loadMore={() => {
                             fetchNowPlaying(currentPageNP);
                         }}
@@ -246,7 +222,50 @@ const App = () => {
                         likedMovies={likedMovies}
                         watchedMovies={watchedMovies}
                     />
-                )}
+            )
+        }
+
+        if (route === "search") {
+            return (
+                <MovieList
+                        loadMore={() => {
+                            fetchSearch(currentPageSearch);
+                        }}
+                        movieData={searchData}
+                        handleMovieClick={handleMovieClick}
+                        handleMovieLike={handleMovieLike}
+                        handleMovieWatch={handleMovieWatch}
+                        likedMovies={likedMovies}
+                        watchedMovies={watchedMovies}
+                    />
+            )
+        }
+
+        if (route === 'liked') {
+            return (<></>)
+        }
+
+        if (route === watched) {
+            return (<></>)
+        }
+    }
+
+    return (
+        <div className="App">
+            <Header
+                handleTextChange={handleTextChange}
+                handleSearchSubmit={handleSearchSubmit}
+                route={route}
+                setRoute={setRoute}
+                clearSearch={clearSearch}
+                setSortOption={setSortOption}
+                openSidebar={openSidebar}
+                setOpenSidebar={setOpenSidebar}
+            />
+
+            <main className={openSidebar ? "main-open-sidebar" : ""}>
+                {openSidebar && <Sidebar />}
+                {returnList(route)}
             </main>
 
             <MovieModal
