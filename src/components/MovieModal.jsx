@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/MovieModal.css";
 
-const MovieModal = ({ showModal, setShowModal, movie, videoLink }) => {
+const MovieModal = ({ showModal, setShowModal, movie, videoLink, showTrailer, setShowTrailer }) => {
     if (!movie) {
         return 
     }
-
-    const [showTrailer, setShowTrailer] = useState(false);
 
     const handleClickInside = (e) => {
         e.stopPropagation();
