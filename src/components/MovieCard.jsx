@@ -12,12 +12,13 @@ const MovieCard = ({
 }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [isWatched, setIsWatched] = useState(false);
+    const [shouldRun, setShouldRun] = useState(false);
 
     let image_src = !(movie.image === null)
         ? `http://image.tmdb.org/t/p/w500/${movie.image}`
         : "../../public/placeholder_img.svg";
 
-    const togglLike = (e) => {
+    const toggleLike = (e) => {
         e.stopPropagation();
         setIsLiked(!isLiked);
     };
@@ -27,12 +28,22 @@ const MovieCard = ({
     };
 
     useEffect(() => {
+        if (!shouldRun) {
+            return
+        }
         handleMovieLike(movie, isLiked);
     }, [isLiked]);
 
     useEffect(() => {
-        handleMovieWatch(movie, isLiked);
+        if (!shouldRun) {
+            return
+        }
+        handleMovieWatch(movie, isWatched);
     }, [isWatched]);
+
+    useEffect(() => {
+        setShouldRun(true)
+    }, []) 
 
     useEffect(() => {
         if (likedMovies.includes(movie) && !isLiked) {
@@ -57,7 +68,7 @@ const MovieCard = ({
                 className="movie-image"
             ></img>
             <div className="user-buttons">
-                <div className="icon-container" onClick={togglLike}>
+                <div className="icon-container" onClick={toggleLike}>
                     <img
                         src="./heart.svg"
                         className={
