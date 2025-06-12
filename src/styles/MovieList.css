@@ -15,7 +15,8 @@
     justify-content: flex-start;
     align-items: center;
     overflow: scroll;
-    max-height: calc(100vh - 255px);
+    max-height: calc(100vh - 140px - 64px);
+    padding-bottom: 20px;
 }
 
 .nothing {
