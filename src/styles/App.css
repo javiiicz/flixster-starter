@@ -35,7 +35,6 @@ button:active {
 
 main {
     display: block;
-    padding: 10px 0;
     flex-grow: 1;    
     overflow: hidden;
 }
