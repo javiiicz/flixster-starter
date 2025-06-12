@@ -10,6 +10,7 @@ import {
     parseMovieVideos,
 } from "../utils/utils";
 import MovieModal from "./MovieModal";
+import Sidebar from "./Sidebar";
 
 const App = () => {
     const [movieData, setMovieData] = useState([]);
@@ -26,6 +27,8 @@ const App = () => {
     const [videoLink, setVideoLink] = useState(null);
     const [likedMovies, setLikedMovies] = useState([]);
     const [watchedMovies, setWatchedMovies] = useState([]);
+    const [openSidebar, setOpenSidebar] = useState(false);
+    const [showTrailer, setShowTrailer] = useState(false);
 
     useEffect(() => {
         fetchNowPlaying(1);
@@ -213,8 +216,11 @@ const App = () => {
                 setShowSearch={setShowSearch}
                 clearSearch={clearSearch}
                 setSortOption={setSortOption}
+                openSidebar={openSidebar}
+                setOpenSidebar={setOpenSidebar}
             />
 
+            <main>
             {showSearch ? (
                 <MovieList
                     loadMore={() => {
@@ -241,12 +247,19 @@ const App = () => {
                 />
             )}
 
+            <Sidebar/>
+            </main>
+
             <MovieModal
                 showModal={showModal}
                 setShowModal={setShowModal}
                 movie={movie}
                 videoLink={videoLink}
+                showTrailer={showTrailer}
+                setShowTrailer={setShowTrailer}
             />
+
+            
 
             <Footer />
         </div>

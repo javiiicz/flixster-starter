@@ -8,14 +8,6 @@
     justify-content: center;
 }
 
-main {
-    padding: 10px 0;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
 @media (max-width: 800px) {
     .movie-list-container {
