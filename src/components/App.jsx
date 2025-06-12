@@ -273,8 +273,6 @@ const App = () => {
         }
     }
 
-    useEffect(() => {console.log(likedMovies)}, [likedMovies])
-
     return (
         <div className="App">
             <Header
