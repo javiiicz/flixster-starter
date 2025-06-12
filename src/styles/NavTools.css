@@ -10,12 +10,31 @@
     display: flex;
     gap: 5px;
     padding: 5px;
+    flex: 1
 }
 
 .buttons {
     display: flex;
     justify-content: center;
     gap:5px
+}
+
+.sidebar-container {
+    width: 40px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.sidebar-container:hover {
+    transform: scale(1.1);
+}
+
+.sidebar-container.open {
+    transform: rotate(180deg);
+}
+
+.sidebar-img {
+    padding: 5px;
+    filter: invert(100%) sepia(0%) saturate(7498%) hue-rotate(344deg) brightness(96%) contrast(106%);
 }
 
 @media (max-width: 800px) {
