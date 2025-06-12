@@ -12,3 +12,20 @@
     font-weight: 400;
     gap: 30px;
 }
+
+.selected {
+    font-weight: 900;
+    text-shadow: 0, 0, 5px, rgb(255,255,255,1);
+}
+
+li {
+    transition: font-weight 0.2s;
+    cursor: pointer;
+    background-color: rgb(255,255,255,0.2);
+    border-radius: 1px;
+    padding: 5px;
+}
+
+li:hover {
+    font-weight: 900;
+}
