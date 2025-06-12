@@ -17,6 +17,7 @@ h1 {
 }
 
 .view-tabs {
+    position: absolute;
     display: flex;
     flex-direction: row;
     width: max-content;
