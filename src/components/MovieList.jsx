@@ -14,11 +14,9 @@ const MovieList = ({
 }) => {
     if (movieData.length === 0) {
         return (
-            <main>
                 <section className="nothing">
                     <h2>Nothing to show...</h2>
                 </section>
-            </main>
         );
     }
 

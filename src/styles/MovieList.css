@@ -18,6 +18,11 @@
     max-height: calc(100vh - 255px);
 }
 
+.nothing {
+    align-self: center;
+    justify-self: center;
+}
+
 @media (max-width: 800px) {
     .movie-list-container {
         padding: 10px;
