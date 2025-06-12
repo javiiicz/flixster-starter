@@ -169,6 +169,9 @@ const App = () => {
 
     const handleMovieLike = (movie, adding) => {
         if (adding) {
+            if (likedMovies.includes(movie)) {
+                return;
+            }
             setLikedMovies([...likedMovies, movie]);
         } else {
             if (likedMovies.length === 0) {
@@ -181,6 +184,9 @@ const App = () => {
 
     const handleMovieWatch = (movie, adding) => {
         if (adding) {
+            if (watchedMovies.includes(movie)) {
+                return;
+            }
             setWatchedMovies([...watchedMovies, movie]);
         } else {
             if (watchedMovies.length === 0) {
@@ -197,10 +203,6 @@ const App = () => {
             setNeedsSorting(false);
         }
     }, [sortOption, needsSorting]);
-
-    useEffect(() => {
-        console.log(likedMovies)
-    }, [likedMovies])
 
     return (
         <div className="App">
@@ -222,6 +224,8 @@ const App = () => {
                     handleMovieClick={handleMovieClick}
                     handleMovieLike={handleMovieLike}
                     handleMovieWatch={handleMovieWatch}
+                    likedMovies={likedMovies}
+                    watchedMovies={watchedMovies}
                 />
             ) : (
                 <MovieList
@@ -232,6 +236,8 @@ const App = () => {
                     handleMovieClick={handleMovieClick}
                     handleMovieLike={handleMovieLike}
                     handleMovieWatch={handleMovieWatch}
+                    likedMovies={likedMovies}
+                    watchedMovies={watchedMovies}
                 />
             )}
 

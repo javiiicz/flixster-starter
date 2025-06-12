@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "../styles/MovieCard.css";
 import { useEffect, useState } from "react";
 
-const MovieCard = ({ movie, handleMovieClick, handleMovieLike, handleMovieWatch }) => {
+const MovieCard = ({ movie, handleMovieClick, handleMovieLike, handleMovieWatch, likedMovies, watchedMovies }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [isWatched, setIsWatched] = useState(false);
 
@@ -18,6 +18,14 @@ const MovieCard = ({ movie, handleMovieClick, handleMovieLike, handleMovieWatch 
         e.stopPropagation();
         setIsWatched(!isWatched);
     };
+
+    if (likedMovies.includes(movie) && !isLiked) {
+        setIsLiked(true)
+    }
+
+    if (watchedMovies.includes(movie) && !isWatched) {
+        setIsWatched(true)
+    }
 
     useEffect(() => {
         handleMovieLike(movie, isLiked)

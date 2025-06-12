@@ -2,7 +2,15 @@ import MovieCard from "./MovieCard";
 import "../styles/MovieList.css";
 import { useEffect } from "react";
 
-const MovieList = ({ movieData, loadMore, handleMovieClick, handleMovieLike, handleMovieWatch }) => {
+const MovieList = ({
+    movieData,
+    loadMore,
+    handleMovieClick,
+    handleMovieLike,
+    handleMovieWatch,
+    likedMovies,
+    watchedMovies,
+}) => {
     if (movieData.length === 0) {
         return (
             <main>
@@ -12,8 +20,6 @@ const MovieList = ({ movieData, loadMore, handleMovieClick, handleMovieLike, han
             </main>
         );
     }
-
-    
 
     return (
         <main>
@@ -26,6 +32,8 @@ const MovieList = ({ movieData, loadMore, handleMovieClick, handleMovieLike, han
                             handleMovieClick={handleMovieClick}
                             handleMovieLike={handleMovieLike}
                             handleMovieWatch={handleMovieWatch}
+                            likedMovies={likedMovies}
+                            watchedMovies={watchedMovies}
                         />
                     );
                 })}
