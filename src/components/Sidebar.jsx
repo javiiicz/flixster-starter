@@ -2,7 +2,7 @@ import "../styles/Sidebar.css";
 
 const Sidebar = ({ route, setRoute }) => {
     return (
-        <div className="sidebar-content">
+        <aside className="sidebar-content">
             <ul className="page-list">
                 <li
                     className={(route === "nowPlaying" || route === "search") ? "selected" : ""}
@@ -29,7 +29,7 @@ const Sidebar = ({ route, setRoute }) => {
                     Watched
                 </li>
             </ul>
-        </div>
+        </aside>
     );
 };
 
