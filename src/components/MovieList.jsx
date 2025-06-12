@@ -10,6 +10,7 @@ const MovieList = ({
     handleMovieWatch,
     likedMovies,
     watchedMovies,
+    route
 }) => {
     if (movieData.length === 0) {
         return (
@@ -27,7 +28,7 @@ const MovieList = ({
                 {movieData.map((movie, index) => {
                     return (
                         <MovieCard
-                            key={index}
+                            key={`${route}-${index}`}
                             movie={movie}
                             handleMovieClick={handleMovieClick}
                             handleMovieLike={handleMovieLike}

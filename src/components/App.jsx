@@ -18,7 +18,6 @@ const App = () => {
     const [currentPageSearch, setCurrentPageSearch] = useState(1);
     const [textField, setTextField] = useState("");
     const [searchData, setSearchData] = useState([]);
-    const [showSearch, setShowSearch] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [movie, setMovie] = useState(null);
     const [searchSubmitted, setSearchSubmitted] = useState(false);
@@ -212,6 +211,7 @@ const App = () => {
         if (route === "nowPlaying") {
             return (
                 <MovieList
+                        route={route}
                         loadMore={() => {
                             fetchNowPlaying(currentPageNP);
                         }}
@@ -228,6 +228,7 @@ const App = () => {
         if (route === "search") {
             return (
                 <MovieList
+                        route={route}
                         loadMore={() => {
                             fetchSearch(currentPageSearch);
                         }}
@@ -244,6 +245,7 @@ const App = () => {
         if (route === 'liked') {
             return (
                 <MovieList
+                        route={route}
                         loadMore={null}
                         movieData={likedMovies}
                         handleMovieClick={handleMovieClick}
@@ -255,9 +257,10 @@ const App = () => {
             )
         }
 
-        if (route === watched) {
+        if (route === 'watched') {
             return (
                 <MovieList
+                        route={route}
                         loadMore={null}
                         movieData={watchedMovies}
                         handleMovieClick={handleMovieClick}
@@ -269,6 +272,8 @@ const App = () => {
             )
         }
     }
+
+    useEffect(() => {console.log(likedMovies)}, [likedMovies])
 
     return (
         <div className="App">
@@ -284,7 +289,7 @@ const App = () => {
             />
 
             <main className={openSidebar ? "main-open-sidebar" : ""}>
-                {openSidebar && <Sidebar />}
+                {openSidebar && <Sidebar route={route} setRoute={setRoute}/>}
                 {returnList(route)}
             </main>
 
