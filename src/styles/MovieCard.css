@@ -37,12 +37,16 @@
 }
 
 .user-buttons {
-    height: 25px;
+    height: 31px;
     width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color: #ddd;
+    padding: 3px;
+    border-radius: 15px;
+    box-shadow: 0 0 3px rgb(0,0,0,0.3);
 }
 
 .icon-container {
@@ -54,6 +58,7 @@
 
 .icon {
     height: 100%;
+    filter: invert(22%) sepia(1%) saturate(25%) hue-rotate(317deg) brightness(99%) contrast(90%);
 }
 
 .heart,
