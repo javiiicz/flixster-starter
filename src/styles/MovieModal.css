@@ -122,6 +122,22 @@ span {
 
     .modal-content {
         max-width: 80%;
+        padding: 5cqw;
+        gap: 0px;
+        font-size: 13px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .movie-container {
+        padding: 5px;
+        gap: 10px;
+    }
+
+    .genre-card {
+        font-size: 10px;
     }
 }
 
