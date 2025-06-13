@@ -221,6 +221,7 @@ const App = () => {
                         handleMovieWatch={handleMovieWatch}
                         likedMovies={likedMovies}
                         watchedMovies={watchedMovies}
+                        openSidebar={openSidebar}
                     />
             )
         }
@@ -238,6 +239,7 @@ const App = () => {
                         handleMovieWatch={handleMovieWatch}
                         likedMovies={likedMovies}
                         watchedMovies={watchedMovies}
+                        openSidebar={openSidebar}
                     />
             )
         }
@@ -253,6 +255,7 @@ const App = () => {
                         handleMovieWatch={handleMovieWatch}
                         likedMovies={likedMovies}
                         watchedMovies={watchedMovies}
+                        openSidebar={openSidebar}
                     />
             )
         }
@@ -268,6 +271,7 @@ const App = () => {
                         handleMovieWatch={handleMovieWatch}
                         likedMovies={likedMovies}
                         watchedMovies={watchedMovies}
+                        openSidebar={openSidebar}
                     />
             )
         }

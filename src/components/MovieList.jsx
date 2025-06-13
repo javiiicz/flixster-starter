@@ -10,18 +10,19 @@ const MovieList = ({
     handleMovieWatch,
     likedMovies,
     watchedMovies,
-    route
+    route,
+    openSidebar
 }) => {
     if (movieData.length === 0) {
         return (
-                <section className="nothing">
+                <section className={openSidebar ? "nothing open-sidebar" : "nothing"}>
                     <h2>Nothing to show...</h2>
                 </section>
         );
     }
 
     return (
-        <div className="movie-content">
+        <div className={openSidebar ? "movie-content open-sidebar" : "movie-content"}>
             <section className="movie-list-container">
                 {movieData.map((movie, index) => {
                     return (

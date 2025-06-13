@@ -48,3 +48,9 @@ main {
 .movie-display {
     overflow: scroll;
 }
+
+@media (max-width: 800px) {
+    .main-open-sidebar {
+    grid-template-columns: 9fr 1fr;
+}
+}

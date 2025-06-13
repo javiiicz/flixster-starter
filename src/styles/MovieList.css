@@ -28,4 +28,9 @@
     .movie-list-container {
         padding: 10px;
     }
+
+    .open-sidebar {
+        width: 0;
+        overflow: hidden;
+    }
 }
