@@ -287,7 +287,7 @@ const App = () => {
             />
 
             <main className={openSidebar ? "main-open-sidebar" : ""}>
-                {openSidebar && <Sidebar route={route} setRoute={setRoute}/>}
+                <Sidebar route={route} setRoute={setRoute} openSidebar={openSidebar}/>
                 {returnList(route)}
             </main>
 

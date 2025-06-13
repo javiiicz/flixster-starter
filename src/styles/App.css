@@ -35,13 +35,13 @@ button:active {
 
 main {
     display: grid;
+    grid-template-columns: 0fr 1fr;
     flex-grow: 1;    
     overflow: hidden;
 }
 
 
 .main-open-sidebar {
-    display: grid;
     grid-template-columns: 1fr 10fr;
 }
 

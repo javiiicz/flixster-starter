@@ -1,8 +1,8 @@
 import "../styles/Sidebar.css";
 
-const Sidebar = ({ route, setRoute }) => {
+const Sidebar = ({ route, setRoute, openSidebar }) => {
     return (
-        <aside className="sidebar-content">
+        <aside className={openSidebar ? "sidebar-content sidebar-visible" : "sidebar-content"} >
             <ul className="page-list">
                 <li
                     className={(route === "nowPlaying" || route === "search") ? "selected" : ""}

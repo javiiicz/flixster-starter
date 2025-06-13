@@ -1,8 +1,12 @@
 .sidebar-content {
-    padding-right: 50px;
+    
     background-color: #134074;
     color: white;
-    padding-top: 50px;
+
+    width: 0;
+    overflow: hidden;
+
+    transition: width 0.2s;
 }
 
 .page-list {
@@ -28,4 +32,11 @@ li {
 
 li:hover {
     font-weight: 900;
+}
+
+.sidebar-visible {
+    padding-top: 50px;
+    padding-right: 50px;
+
+    width: auto;
 }
