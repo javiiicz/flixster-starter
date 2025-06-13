@@ -99,28 +99,26 @@ Deployed Application: [Flixster Deployed Site](https://flixster-meej.onrender.co
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+[Video Link](https://www.loom.com/share/1f6613d7a400462680010a28e5cd6b04?sid=7458be59-b0e7-427c-b795-b27e433ab779)
 
 ### Reflection
 
 -   Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+I did feel I used everything taught this week in this project. Definitely the hardest part was the fetching and parsing of data from the API; however, with the help of the TAs it was possible to grasp. Making the sidebar was a little tricky because it did not display the way I wanted it to.
 
 -   If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+If I had more time I would have played more with the styling to give the page more of an identity. Additionally, I would add a search by genres so that users can find movies from their favorite ones.
 
 -   Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I noticed that my page was sometimes a little jittery, but I think it has to do with the way I was adding classes and managing states in the components. I would like to polish for the next project.
 
 ### Open-source libraries used
 
--   Add any links to open-source libraries used in your project.
+n/a
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shout out to Tabitha for helping me work through a very tricky bug. It was fun dissecting the code together and finding a fix. 🪲
